@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
  const Navbar= ()=> {
   return (
@@ -14,9 +15,9 @@ import React from 'react';
 
           {/* Right side - Login button */}
           <div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200">
+            <Link to="/auth/login" className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200">
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>

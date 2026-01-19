@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../apis/user.api";
-import {useSelector} from 'react-redux'
-
+import {useDispatch, useSelector} from 'react-redux'
+import {login} from "../store/slice/auth.slice.js"
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -10,9 +10,11 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  
   const auth= useSelector((state) => state.auth)
 
+  const dispatch= useDispatch()
+  const navigate= useNavigate()
   const validateForm = () => {
     const newErrors = {};
 
@@ -41,7 +43,9 @@ const LoginForm = () => {
       setIsSubmitting(true);
       try {
         const data = await loginUser(email, password);
-        console.log(data)
+        dispatch(login(data.userObj))
+        
+        navigate("/dashboard")
         setIsSubmitting(false);
         setEmail("");
         setPassword("");

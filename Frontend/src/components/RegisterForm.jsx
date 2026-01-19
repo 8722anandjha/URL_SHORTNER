@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../apis/user.api";
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,7 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const navigate= useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -56,7 +57,7 @@ const RegisterForm = () => {
       setIsSubmitting(true);
 
      const data= await registerUser(formData.name, formData.email, formData.password);
-     console.log(data)
+      navigate("/dashboard")
       setIsSubmitting(false)
       setFormData({
         name: "",
