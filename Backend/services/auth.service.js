@@ -12,16 +12,21 @@ export const registerUser= async(name, email ,password)=>{
     const newUser= await createUser(name,email,password)
     const token= await signToken({id:newUser._id})
 
-    return token
+    return {token}
 }
 
 
 export const loginUser= async(email,password)=>{
     const user = await findUserByEmail(email)
-
-    if(!user || user.password !== password){
+    
+    if(!user ){
         throw new Error("Invalid credentials")
     }
+    const isValid= await user.isPasswordCorrect(password)
+       if(!isValid) {
+        throw new Error("Invalid credentials")
+       }
+       
     const token = signToken({id:user._id})
     return {token,user}
 }

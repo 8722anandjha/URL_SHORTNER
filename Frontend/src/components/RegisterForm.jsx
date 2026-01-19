@@ -55,7 +55,8 @@ const RegisterForm = () => {
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true);
 
-      await registerUser(formData.name, formData.email, formData.password);
+     const data= await registerUser(formData.name, formData.email, formData.password);
+     console.log(data)
       setIsSubmitting(false)
       setFormData({
         name: "",

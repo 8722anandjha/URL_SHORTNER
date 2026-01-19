@@ -26,7 +26,6 @@ export const redirectFromShortUrl= async(req, res,next)=>{
     try{
         const {id}= req.params
         const url = await getShortUrl(id)
-        console.log(url)
         res.redirect(url.full_url)
     }catch(err){
         next(err)
