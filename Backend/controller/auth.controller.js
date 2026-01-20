@@ -28,3 +28,13 @@ export const login_User = async (req, res) => {
     message: "login successfull",
   });
 };
+
+export const logout_User= async(req,res)=>{
+  res.clearCookie("accessToken",cookieOptions)
+  res.status(200).json({message:"logout success"})
+
+}
+
+export const get_current_user= async(req,res)=>{
+  res.status(200).json({user:req.user})
+}

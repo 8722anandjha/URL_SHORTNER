@@ -21,6 +21,7 @@ app.use(attachUser)
                      
 import createShortUrl from "./route/shortUrl.route.js"
 import auth_routes from "./route/auth.route.js"
+import user_routes from "./route/user.route.js"
 import { redirectFromShortUrl } from './controller/shortUrl.controller.js';
 import { errorHandler } from './utils/errorHandler.js';
 
@@ -28,7 +29,7 @@ import { errorHandler } from './utils/errorHandler.js';
 
 app.use("/api/auth",auth_routes)
 app.use("/api/create",createShortUrl);
-
+app.use("/api/user",user_routes)
 app.get("/:id",redirectFromShortUrl)
 
 app.use(errorHandler)

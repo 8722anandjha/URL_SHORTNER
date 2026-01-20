@@ -1,3 +1,4 @@
+import shortUrl from "../model/shortURL.model.js"
 import { User } from "../model/user.model.js"
 
 export const findUserByEmail=async(email)=>{
@@ -18,4 +19,6 @@ export const createUser = async (name, email, password) => {
   return newUser;
 };
 
-
+export const getAllUrls= async(id)=>{
+  return await shortUrl.find({_id:id})
+}

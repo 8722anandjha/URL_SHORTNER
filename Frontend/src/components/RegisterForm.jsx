@@ -83,7 +83,7 @@ const RegisterForm = () => {
               htmlFor="fullName"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-               name
+               Full Name
             </label>
             <input
               id="name"

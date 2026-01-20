@@ -46,10 +46,11 @@ const LoginForm = () => {
         dispatch(login(data.userObj))
         
         navigate("/dashboard")
+        
         setIsSubmitting(false);
         setEmail("");
         setPassword("");
-        // console.log(data)
+        
       } catch (errors) {
         console.log(errors)
         setIsSubmitting(false)
