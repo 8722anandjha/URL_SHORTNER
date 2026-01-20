@@ -1,4 +1,4 @@
-import { getCustomSlug, getShortUrl } from "../dao/short_url.js";
+import { deleteShortUrl, getCustomSlug, getShortUrl } from "../dao/short_url.js";
 import {
   generateShortUrlWithoutUser,
   generateShortUrlWithUser,
@@ -58,3 +58,17 @@ export const createCustomShortUrl = async (req, res, next) => {
     next(err);
   }
 };
+
+export const deleteUrlById= async(req,res)=>{
+    const { id } = req.params; 
+    if(!id){
+      return res.status(400).json("Url Id is missing")
+    }
+    const deleted =await deleteShortUrl(id)
+    if (!deleted) {
+      return res.status(404).json({ message: "URL not found" });
+    }
+
+    res.status(200).json({ message: "URL deleted successfully" });
+   
+}

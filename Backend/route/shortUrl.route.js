@@ -1,7 +1,10 @@
 import express from 'express'
-import { createShortUrl, redirectFromShortUrl } from '../controller/shortUrl.controller.js';
+import { createShortUrl, deleteUrlById } from '../controller/shortUrl.controller.js';
+import { authUser } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-router.post("/",createShortUrl);
+router.post("/create",createShortUrl);
+router.delete("/delete/:id",authUser,deleteUrlById)
+
 export default router

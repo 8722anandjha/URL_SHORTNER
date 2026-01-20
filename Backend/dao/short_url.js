@@ -1,4 +1,5 @@
 
+import shortUrl from "../model/shortURL.model.js";
 import ShortUrl from "../model/shortURL.model.js";
 import { ConflictError } from "../utils/errorHandler.js";
 export const saveShortUrl= async(shortUrl,longUrl,userId)=>{
@@ -32,3 +33,8 @@ export const getShortUrl = async (shortUrl) => {
 export const getCustomSlug = async (slug)=>{
     return await ShortUrl.findOne({short_url:slug})  
 }
+
+export const deleteShortUrl = async (id) => {
+  const result = await shortUrl.findByIdAndDelete(id);
+  return result;
+};

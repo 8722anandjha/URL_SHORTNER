@@ -28,7 +28,7 @@ import { errorHandler } from './utils/errorHandler.js';
 
 
 app.use("/api/auth",auth_routes)
-app.use("/api/create",createShortUrl);
+app.use("/api",createShortUrl);
 app.use("/api/user",user_routes)
 app.get("/:id",redirectFromShortUrl)
 

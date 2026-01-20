@@ -21,6 +21,6 @@ export const getMe = async () =>{
 }
 
 export const getAllUserUrls = async () =>{
-    const {data} = await axiosInstance.post("/api/user/urls")
+    const {data} = await axiosInstance.get("/api/user/urls")
     return data
 }
