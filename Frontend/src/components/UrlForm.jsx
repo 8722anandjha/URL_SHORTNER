@@ -4,17 +4,17 @@ import { useSelector } from 'react-redux';
 
 const UrlForm = () => {
     const [url, setUrl] = useState("");
-    const [customSlug, setCustomSlug] = useState("");
+    const [slug, setSlug] = useState("");
     const [shortUrl, setShortUrl] = useState("")
     const [copied, setCopied] = useState(false);
 
     const {isAuthenticated}= useSelector((state)=>state.auth)
     
     const handleSubmit = async () => {
-        const payload = { url };
+        const payload = { url};
         
-        if (isAuthenticated && customSlug.trim()) {
-            payload.customSlug = customSlug.trim();
+        if (isAuthenticated && slug.trim()) {
+            payload.slug = slug.trim();
         }
         
         const { data } = await axiosInstance.post("/api/create", payload);
@@ -52,8 +52,8 @@ const UrlForm = () => {
                     </label>
                     <input 
                         type="text" 
-                        value={customSlug}  
-                        onChange={(e) => setCustomSlug(e.target.value)} 
+                        value={slug}  
+                        onChange={(e) => setSlug(e.target.value)} 
                         id="customSlug" 
                         placeholder='my-custom-link' 
                         className='w-full px-4 py-2 border border-gray-300 rounded-md focus'

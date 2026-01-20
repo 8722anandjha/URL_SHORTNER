@@ -5,5 +5,5 @@ import { authUser } from "../middleware/auth.middleware.js"
 
 
 const router= express.Router()
-router.get("/urls",authUser,getAllUserUrls)
+router.get("/me",authUser,getAllUserUrls)
 export default router

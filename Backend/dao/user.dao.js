@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import shortUrl from "../model/shortURL.model.js"
 import { User } from "../model/user.model.js"
 
@@ -20,5 +21,9 @@ export const createUser = async (name, email, password) => {
 };
 
 export const getAllUrls= async(id)=>{
-  return await shortUrl.find({_id:id})
+  const res= await shortUrl.find({
+    user:id
+  })
+  // console.log(res)
+  return res
 }

@@ -15,10 +15,6 @@ const userSchema= new mongoose.Schema({
         required:true,
         select:false
     },
-    avatar:{
-        type:String,
-        required:false
-    },
     links:[
         {
             type: mongoose.Schema.Types.ObjectId,
