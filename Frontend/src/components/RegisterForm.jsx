@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../apis/user.api";
+import { useDispatch} from "react-redux"
+import {login} from "../store/slice/auth.slice.js"
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,7 +13,9 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+    
     const navigate= useNavigate();
+    const dispatch= useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -57,7 +61,9 @@ const RegisterForm = () => {
       setIsSubmitting(true);
 
      const data= await registerUser(formData.name, formData.email, formData.password);
+     
       navigate("/dashboard")
+      dispatch(login(data.user))
       setIsSubmitting(false)
       setFormData({
         name: "",

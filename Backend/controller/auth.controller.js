@@ -8,12 +8,18 @@ export const register_User = async (req, res) => {
     return res.status(400).json({ message: "All fields are required" });
   }
 
-  const {token} = await registerUser(name, email, password);
- 
+  const {token,user} = await registerUser(name, email, password);
   res
     .status(201)
     .cookie("accessToken", token, cookieOptions)
-    .json({ token, message: "Register success" });
+    .json({ 
+      token,
+      user:{
+        name: user.name,
+        email: user.email,
+        links: user.links
+      },
+      message: "Register success" });
 };
 
 export const login_User = async (req, res) => {
